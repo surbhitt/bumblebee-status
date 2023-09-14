@@ -31,6 +31,11 @@ import core.input
 import util.format
 
 
+# to only notify once
+notif_w = True
+notif_c = True
+
+
 class BatteryManager(object):
     def remaining(self):
         try:
@@ -173,9 +178,9 @@ class Module(core.module.Module):
         return output
 
     def state(self, widget):
+        global notif_w, notif_c
         state = []
         capacity = widget.get("capacity")
-
         if capacity < 0:
             log.debug("battery state: {}".format(state))
             return ["critical", "unknown"]
@@ -210,12 +215,18 @@ class Module(core.module.Module):
             and self.__manager.charge_any(self._batteries) == "Discharging"
         ):
             state.append("critical")
+            # os.system('dunstify "warning battery: %i" -u critical' %capacity)
+            if notif_c:
+                notif_c = False
+                util.cli.execute('dunstify "warning battery: %i" -u critical' %capacity)
         elif (
             capacity < int(self.parameter("warning", 20))
             and self.__manager.charge_any(self._batteries) == "Discharging"
         ):
             state.append("warning")
-
+            if notif_w:
+                notif_w = False
+                util.cli.execute('dunstify "warning battery: %i" -u normal' %capacity)
         return state
 
 
