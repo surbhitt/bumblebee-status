@@ -105,18 +105,18 @@ class Module(core.module.Module):
             ),
         )
         # don't ask for these
-        menu.add_menuitem(
-            "switch user", callback=functools.partial(util.cli.execute, switch_user_cmd)
-        )
-        menu.add_menuitem(
-            "lock", callback=functools.partial(util.cli.execute, lock_cmd)
-        )
-        menu.add_menuitem(
-            "suspend", callback=functools.partial(util.cli.execute, suspend_cmd)
-        )
-        menu.add_menuitem(
-            "hibernate", callback=functools.partial(util.cli.execute, hibernate_cmd)
-        )
+        # menu.add_menuitem(
+        #     "switch user", callback=functools.partial(util.cli.execute, switch_user_cmd)
+        # )
+        # menu.add_menuitem(
+        #     "lock", callback=functools.partial(util.cli.execute, lock_cmd)
+        # )
+        # menu.add_menuitem(
+        #     "suspend", callback=functools.partial(util.cli.execute, suspend_cmd)
+        # )
+        # menu.add_menuitem(
+        #     "hibernate", callback=functools.partial(util.cli.execute, hibernate_cmd)
+        # )
 
         menu.show(widget, 0, 0)
 
