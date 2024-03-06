@@ -27,7 +27,7 @@ import util.cli
 
 
 class Module(core.module.Module):
-    @core.decorators.every(seconds=30)
+    @core.decorators.every(seconds=1)
     def __init__(self, config, theme):
         super().__init__(config, theme, core.widget.Widget(self.brightness))
 
@@ -60,7 +60,7 @@ class Module(core.module.Module):
         return res[0]
 
     def register_cmd(self, up_cmd, down_cmd):
-        core.input.register(self, button=core.input.WHEEL_UP, cmd=up_cmd)
+        core.input.register(self, button=core.input.WHEEL_UP, cmd="dunstify 'you wish'")
         core.input.register(self, button=core.input.WHEEL_DOWN, cmd=down_cmd)
 
     def brightness(self, widget):

@@ -80,7 +80,7 @@ class Module(core.module.Module):
         menu = util.popup.menu(self.__config)
         reboot_cmd = self.parameter("reboot", "reboot")
         shutdown_cmd = self.parameter("shutdown", "shutdown -h now")
-        logout_cmd = self.parameter("logout", "i3exit logout")
+        logout_cmd = self.parameter("logout", "i3-msg exit")
         switch_user_cmd = self.parameter("switch_user", "i3exit switch_user")
         lock_cmd = self.parameter("lock", "i3exit lock")
         suspend_cmd = self.parameter("suspend", "i3exit suspend")
@@ -105,18 +105,18 @@ class Module(core.module.Module):
             ),
         )
         # don't ask for these
-        menu.add_menuitem(
-            "switch user", callback=functools.partial(util.cli.execute, switch_user_cmd)
-        )
-        menu.add_menuitem(
-            "lock", callback=functools.partial(util.cli.execute, lock_cmd)
-        )
-        menu.add_menuitem(
-            "suspend", callback=functools.partial(util.cli.execute, suspend_cmd)
-        )
-        menu.add_menuitem(
-            "hibernate", callback=functools.partial(util.cli.execute, hibernate_cmd)
-        )
+        # menu.add_menuitem(
+        #     "switch user", callback=functools.partial(util.cli.execute, switch_user_cmd)
+        # )
+        # menu.add_menuitem(
+        #     "lock", callback=functools.partial(util.cli.execute, lock_cmd)
+        # )
+        # menu.add_menuitem(
+        #     "suspend", callback=functools.partial(util.cli.execute, suspend_cmd)
+        # )
+        # menu.add_menuitem(
+        #     "hibernate", callback=functools.partial(util.cli.execute, hibernate_cmd)
+        # )
 
         menu.show(widget, 0, 0)
 

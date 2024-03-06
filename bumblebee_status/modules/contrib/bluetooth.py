@@ -89,9 +89,10 @@ class Module(core.module.Module):
         """Toggle bluetooth state."""
         if self._status == "On":
             state = "false"
+            os.system('rfkill block bluetooth')
         else:
             state = "true"
-
+            os.system('rfkill unblock bluetooth')
         dst = self.parameter("dbus_destination", "org.blueman.Mechanism")
         dst_path = self.parameter("dbus_destination_path", "/")
 
